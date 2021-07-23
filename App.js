@@ -11,17 +11,10 @@ import {
   Text,
   Button,
 } from 'react-native';
-import {
-  Colors,
-  DebugInstructions,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-import GoalItem from './components/GoalItem';
-import GoalInput from './components/GoalInput';
+import MealsNavigation from './navigation/MealsNavigation';
 
 const App = () => {
-  return <View padding={30}></View>;
+  return <MealsNavigation />;
 };
 
 const styles = StyleSheet.create({});
