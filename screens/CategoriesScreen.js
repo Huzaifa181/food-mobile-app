@@ -1,8 +1,16 @@
 import React from 'react';
-import {View, Text, FlatList, StyleSheet, TouchableOpacity} from 'react-native';
+import {
+  View,
+  Text,
+  FlatList,
+  StyleSheet,
+  Platform,
+  TouchableOpacity,
+} from 'react-native';
 import Colors from '../constants/colors/colors';
 import {CATEGORIES} from '../data/dummy-data';
 import CategoryGridTitle from '../components/CategoryGridTitle';
+import {createMaterialBottomTabNavigator} from 'react-navigation-material-bottom-tabs';
 
 const CategoriesScreen = props => {
   const renderGridItem = itemData => {
