@@ -1,24 +1,25 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
+import {Text, View} from 'react-native';
+import {AppLoading} from 'expo';
 import {enableScreens} from 'react-native-screens';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  TextInput,
-  useColorScheme,
-  View,
-  FlatList,
-  Text,
-  Button,
-} from 'react-native';
-import MealsNavigation from './navigation/MealsNavigation';
+import {createStore, combineReducers} from 'redux';
+import {Provider} from 'react-redux';
 
-const App = () => {
-  enableScreens();
-  return <MealsNavigation />;
-};
+import Navigator from './navigation/MealsNavigation';
+import mealsReducer from './store/reducers/meals';
 
-const styles = StyleSheet.create({});
+enableScreens();
 
-export default App;
+const rootReducer = combineReducers({
+  meals: mealsReducer,
+});
+
+const store = createStore(rootReducer);
+
+export default function App() {
+  return (
+    <Provider store={store}>
+      <Navigator />
+    </Provider>
+  );
+}
