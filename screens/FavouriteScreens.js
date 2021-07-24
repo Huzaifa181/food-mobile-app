@@ -8,6 +8,13 @@ import {MaterialHeaderButtons} from '../components/HeaderButton';
 
 const FavoritesScreen = props => {
   const favMeals = useSelector(state => state.meals.favoriteMeals);
+  if (favMeals.length === 0 || !favMeals) {
+    return (
+      <View style={styles.content}>
+        <Text>No favorite meals found. Start adding some!</Text>
+      </View>
+    );
+  }
   return <MealList listData={favMeals} navigation={props.navigation} />;
 };
 
@@ -27,6 +34,11 @@ FavoritesScreen.navigationOptions = navigationData => {
 
 const styles = StyleSheet.create({
   screen: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  content: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',

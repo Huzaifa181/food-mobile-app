@@ -10,6 +10,13 @@ const CategoryMealScreen = props => {
   const displayMeals = availableMeals.filter(
     meal => meal.categoryIds.indexOf(catId) >= 0,
   );
+  if (displayMeals.length === 0) {
+    return (
+      <View style={styles.content}>
+        <Text>No meals found. May be check your filters?</Text>
+      </View>
+    );
+  }
   return <MealList listData={displayMeals} navigation={props.navigation} />;
 };
 
@@ -21,6 +28,12 @@ CategoryMealScreen.navigationOptions = navigationData => {
   };
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  content: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
 
 export default CategoryMealScreen;
