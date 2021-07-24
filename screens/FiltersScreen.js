@@ -40,17 +40,15 @@ const FilterScreen = props => {
   const saveFilters = useCallback(() => {
     const appliedFilters = {
       glutenFree: isGlutenFree,
-      luctoseFree: isLactoseFree,
+      lactoseFree: isLactoseFree,
       vegan: isVegan,
       isVegetarian: isVegetarian,
     };
   }, [isGlutenFree, isLactoseFree, isVegan, isVegetarian]);
 
   useEffect(() => {
-    navigation.setParams({
-      save: saveFilters,
-    });
-  }, [navigation, saveFilters]);
+    navigation.setParams({save: saveFilters});
+  }, [saveFilters]);
   return (
     <View style={styles.screen}>
       <Text style={styles.title}>Available Filters / Restrictions</Text>
@@ -93,7 +91,7 @@ FilterScreen.navigationOptions = navigationData => {
       <MaterialHeaderButtons>
         <Item
           title="Save"
-          iconName="ios-save"
+          iconName="favorite"
           onPress={navigationData.navigation.getParam('save')}
         />
       </MaterialHeaderButtons>

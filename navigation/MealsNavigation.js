@@ -119,12 +119,10 @@ const FilterNavigator = createStackNavigator(
 const mainNavigator = createDrawerNavigator(
   {
     MealsFavs: mealsFabTabNavigator,
-    Filters: {
-      screen: FilterNavigator,
-      navigationOptions: {
-        drawerLabel: 'Filters!!',
-      },
-    },
+    Filters: FilterNavigator,
+    // navigationOptions: {
+    //   drawerLabel: 'Filters!!',
+    // },
   },
   {
     contentOptions: {
