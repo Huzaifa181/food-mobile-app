@@ -38,10 +38,10 @@ const styles = StyleSheet.create({
   mealItem: {
     height: 200,
     width: '100%',
-    backgroundColor: '#f5f5f5',
+    backgroundColor: 'lightgrey',
     borderRadius: 10,
     overflow: 'hidden',
-    marginVertical: 10,
+    marginVertical: 15,
   },
   screen: {
     flex: 1,

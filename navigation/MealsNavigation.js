@@ -1,9 +1,12 @@
+import React from 'react';
+import {View, Text, FlatList, StyleSheet, TouchableOpacity} from 'react-native';
 import {createStackNavigator} from 'react-navigation-stack';
 import {createAppContainer} from 'react-navigation';
 import CategoriesScreen from '../screens/CategoriesScreen';
 import CategoryMealScreen from '../screens/CategoryMealScreen';
 import MealDetailScreen from '../screens/MealDetailScreen';
 import {createDrawerNavigator} from 'react-navigation-drawer';
+import FilterScreen from '../screens/FiltersScreen';
 // import Icon from 'react-native-ionicons';
 import {Platform} from 'react-native';
 import {createMaterialBottomTabNavigator} from 'react-navigation-material-bottom-tabs';
@@ -62,7 +65,7 @@ const config = {
   Meals: {
     screen: mealsNavigator,
     navigationOptions: {
-      tabBarLabel: 'Meal!',
+      tabBarLabel: <Text>Meals!!!</Text>,
       tabBarIcon: tabInfo => {
         return; //Place;
       },
@@ -90,10 +93,49 @@ const mealsFabTabNavigator =
       })
     : createBottomTabNavigator(config, {
         tabBarOptions: {
+          labelStyle: {fontSize: 20},
           activeTintColor: Colors.accentColor,
         },
       });
+const FilterNavigator = createStackNavigator(
+  {
+    Filters: FilterScreen,
+  },
+  {
+    defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: Colors.primaryColor,
+      },
+      headerTitleStyle: {
+        fontSize: 20,
+        color: 'white',
+      },
+    },
+    navigationOptions: {
+      drawerLabel: 'Filters!!',
+    },
+  },
+);
+const mainNavigator = createDrawerNavigator(
+  {
+    MealsFavs: mealsFabTabNavigator,
+    Filters: {
+      screen: FilterNavigator,
+      navigationOptions: {
+        drawerLabel: 'Filters!!',
+      },
+    },
+  },
+  {
+    contentOptions: {
+      activeTintColor: Colors.accentColor,
+      labelStyle: {
+        fontSize: 18,
+      },
+    },
+  },
+);
 
-const Navigator = createAppContainer(mealsFabTabNavigator);
+const Navigator = createAppContainer(mainNavigator);
 
 export default Navigator;
