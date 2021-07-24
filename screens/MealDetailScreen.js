@@ -1,22 +1,37 @@
 import React from 'react';
-import {View, Text, Button, StyleSheet} from 'react-native';
+import {View, Text, Image, Button, StyleSheet, ScrollView} from 'react-native';
 import {MEALS} from '../data/dummy-data';
 import {HeaderButtons, Item} from 'react-navigation-header-buttons';
 import {MaterialHeaderButtons} from '../components/HeaderButton';
+
+const ListItem = props => {
+  return (
+    <View style={styles.listItem}>
+      <Text>{props.children}</Text>
+    </View>
+  );
+};
 
 const MealDetailScreen = props => {
   const mealId = props.navigation.getParam('mealId');
   const selectedMeal = MEALS.find(meal => meal.id === mealId);
   return (
-    <View style={styles.screen}>
-      <Text>{selectedMeal.title}</Text>
-      <Button
-        title="Go Back to Categories"
-        onPress={() => {
-          props.navigation.popToTop();
-        }}
-      />
-    </View>
+    <ScrollView>
+      <Image source={{uri: selectedMeal.imageUrl}} style={styles.image}></Image>
+      <View style={styles.detail}>
+        <Text>{selectedMeal.duration}m</Text>
+        <Text>{selectedMeal.complexity.toUpperCase()}</Text>
+        <Text>{selectedMeal.affordability.toUpperCase()}</Text>
+      </View>
+      <Text style={styles.title}>Ingredients</Text>
+      {selectedMeal.ingredients.map(ingredients => {
+        return <ListItem key={ingredients}>{ingredients}</ListItem>;
+      })}
+      <Text style={styles.title}>Steps</Text>
+      {selectedMeal.steps.map(step => {
+        return <ListItem key={step}>{step}</ListItem>;
+      })}
+    </ScrollView>
   );
 };
 
@@ -38,10 +53,25 @@ MealDetailScreen.navigationOptions = navigationData => {
 };
 
 const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+  image: {
+    width: '100%',
+    height: 200,
+  },
+  detail: {
+    flexDirection: 'row',
+    padding: 15,
+    justifyContent: 'space-around',
+  },
+  listItem: {
+    marginVertical: 10,
+    marginHorizontal: 20,
+    borderColor: '#ccc',
+    borderWidth: 1,
+    padding: 10,
+  },
+  title: {
+    textAlign: 'center',
+    fontSize: 22,
   },
 });
 

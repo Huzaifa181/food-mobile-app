@@ -130,7 +130,7 @@ const mainNavigator = createDrawerNavigator(
     contentOptions: {
       activeTintColor: Colors.accentColor,
       labelStyle: {
-        fontSize: 18,
+        fontSize: 16,
       },
     },
   },
